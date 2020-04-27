@@ -1,3 +1,13 @@
 {
+<<<<<<< HEAD
     "users": []
+=======
+  "users": [
+    {
+      "username": "seto",
+      "password": "password",
+      "id": 1
+    }
+  ]
+>>>>>>> 6dba32738aaf227d6a159edcd2d87bf720b06f33
 }
