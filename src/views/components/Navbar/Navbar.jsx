@@ -7,6 +7,7 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import ButtonUI from "../Button/Button.tsx";
+import { connect } from "react-redux";
 
 const CircleBg = ({ children }) => {
   return <div className="circle-bg">{children}</div>;
@@ -56,14 +57,24 @@ class Navbar extends React.Component {
           <CircleBg>
             <small style={{ color: "#3C64B1", fontWeight: "bold" }}>4</small>
           </CircleBg> */}
-          <ButtonUI className="mr-3" type="textual">
-            Sign in
-          </ButtonUI>
-          <ButtonUI type="contained">Sign up</ButtonUI>
+          {this.props.user.username}
+          {
+            this.props.user.username ? <button className="btn btn-danger ml-3">Logout</button> :  
+            <>
+            <ButtonUI className="mr-3" type="textual">Sign in</ButtonUI>
+            <ButtonUI type="contained">Sign up</ButtonUI>
+            </>
+          }
         </div>
       </div>
     );
   }
 }
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  return {
+      user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Navbar);

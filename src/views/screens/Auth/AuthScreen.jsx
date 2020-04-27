@@ -4,7 +4,9 @@ import './AuthScreen.css'
 import '../../components/Button/Button.css'
 import { connect } from 'react-redux';
 import { registerHandler, loginHandler, userKeepLogin, logoutHandler } from "../../../redux/actions";
+import cookie from 'universal-cookie'
 
+const cookieObject = new cookie()
 class AuthScreen extends React.Component{
     state = {
         isReg: true,
@@ -26,9 +28,6 @@ class AuthScreen extends React.Component{
         const { username, password, fullName, role } = this.state
         const dataregis = { username, password, fullName, role }
         this.props.registerHandler(dataregis)
-        if(this.props.user.regSuccess){
-            this.setState({ username: ""})
-        }
     }
     loginHandler = () => {
         const {username,password} = this.state

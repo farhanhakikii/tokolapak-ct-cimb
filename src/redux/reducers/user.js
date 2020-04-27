@@ -10,6 +10,7 @@ const init_state = {
   role: "",
   errMsg: "",
   regSuccess: false,
+  isLogin: false,
 };
 
 export default (state = init_state, action) => {
@@ -22,7 +23,8 @@ export default (state = init_state, action) => {
         fullName,
         role,
         id,
-        regSuccess: true
+        regSuccess: true,
+        isLogin: true
       };
     case ON_LOGIN_FAIL:
       return { ...state, errMsg: action.payload}
