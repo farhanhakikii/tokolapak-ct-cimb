@@ -1,13 +1,65 @@
 {
-<<<<<<< HEAD
-    "users": []
-=======
   "users": [
     {
-      "username": "seto",
-      "password": "password",
+      "username": "",
       "id": 1
+    },
+    {
+      "username": "123",
+      "id": 2
+    },
+    {
+      "username": "popopo",
+      "id": 3
+    },
+    {
+      "username": "zun",
+      "password": "zun",
+      "fullName": "zun",
+      "role": "zun",
+      "id": 4
+    },
+    {
+      "username": "zan",
+      "password": "zun",
+      "fullName": "fawaz",
+      "role": "pemain",
+      "id": 5
+    },
+    {
+      "username": "han",
+      "password": "han",
+      "fullName": "han",
+      "role": "han",
+      "id": 6
+    },
+    {
+      "username": "poooop",
+      "password": "pol",
+      "fullName": "pol",
+      "role": "pol",
+      "id": 7
+    },
+    {
+      "username": "polis",
+      "password": "polis",
+      "fullName": "polis",
+      "role": "polis",
+      "id": 8
+    },
+    {
+      "username": "dwvv",
+      "password": "dce",
+      "fullName": "sdf sf",
+      "role": "cwdcw",
+      "id": 9
+    },
+    {
+      "username": "popop",
+      "password": "opopop",
+      "fullName": "popo",
+      "role": "opopo",
+      "id": 10
     }
   ]
->>>>>>> 6dba32738aaf227d6a159edcd2d87bf720b06f33
 }
