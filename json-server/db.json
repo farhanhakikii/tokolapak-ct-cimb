@@ -18,14 +18,14 @@
       "email": "doraemon@mail.com",
       "id": 3
     }
-  ],"products": [
+  ],
+  "products": [
     {
       "productName": "iPhone 7 Plus",
       "price": 5000000,
       "category": "Phone",
       "image": "https://ibox.co.id/media/wysiwyg/PromoOnline/web-banner---iphone-7-plus-rev.png",
       "desc": "HP Terbaikk loh",
-      "location": "Yogyakarta",
       "id": 1
     },
     {
@@ -34,7 +34,6 @@
       "category": "Tablet",
       "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-spacegray-201810.png",
       "desc": "HP Terbaikk loh",
-      "location": "Bandung",
       "id": 2
     },
     {
@@ -43,18 +42,7 @@
       "category": "Laptop",
       "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp15touch-silver-select-cto-201807_3_1.jpeg",
       "desc": "HP Terbaikk loh",
-      "location": "Yogyakarta",
       "id": 3
-    },
-    {
-      "productName": "Macbook Props",
-      "price": 25000000,
-      "category": "Laptop",
-      "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp15touch-silver-select-cto-201807_3_1.jpeg",
-      "desc": "HP Terbaikk loh",
-      "location": "Bogor",
-      "id": 4
     }
   ]
-
 }
