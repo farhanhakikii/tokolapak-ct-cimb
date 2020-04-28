@@ -5,75 +5,56 @@
       "id": 1
     },
     {
-      "username": "123",
+      "username": "doraemon",
+      "fullName": "Dora Emon",
+      "password": "password",
+      "email": "doraemon@mail.com",
       "id": 2
     },
     {
-      "username": "popopo",
+      "username": "pikachu",
+      "fullName": "Dora Emon",
+      "password": "password",
+      "email": "doraemon@mail.com",
+      "id": 3
+    }
+  ],"products": [
+    {
+      "productName": "iPhone 7 Plus",
+      "price": 5000000,
+      "category": "Phone",
+      "image": "https://ibox.co.id/media/wysiwyg/PromoOnline/web-banner---iphone-7-plus-rev.png",
+      "desc": "HP Terbaikk loh",
+      "location": "Yogyakarta",
+      "id": 1
+    },
+    {
+      "productName": "iPad Pro 3",
+      "price": 15000000,
+      "category": "Tablet",
+      "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-spacegray-201810.png",
+      "desc": "HP Terbaikk loh",
+      "location": "Bandung",
+      "id": 2
+    },
+    {
+      "productName": "Macbook Pro",
+      "price": 20000000,
+      "category": "Laptop",
+      "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp15touch-silver-select-cto-201807_3_1.jpeg",
+      "desc": "HP Terbaikk loh",
+      "location": "Yogyakarta",
       "id": 3
     },
     {
-      "username": "zun",
-      "password": "zun",
-      "fullName": "zun",
-      "role": "zun",
+      "productName": "Macbook Props",
+      "price": 25000000,
+      "category": "Laptop",
+      "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp15touch-silver-select-cto-201807_3_1.jpeg",
+      "desc": "HP Terbaikk loh",
+      "location": "Bogor",
       "id": 4
-    },
-    {
-      "username": "zan",
-      "password": "zun",
-      "fullName": "fawaz",
-      "role": "pemain",
-      "id": 5
-    },
-    {
-      "username": "han",
-      "password": "han",
-      "fullName": "han",
-      "role": "han",
-      "id": 6
-    },
-    {
-      "username": "poooop",
-      "password": "pol",
-      "fullName": "pol",
-      "role": "pol",
-      "id": 7
-    },
-    {
-      "username": "polis",
-      "password": "polis",
-      "fullName": "polis",
-      "role": "polis",
-      "id": 8
-    },
-    {
-      "username": "dwvv",
-      "password": "dce",
-      "fullName": "sdf sf",
-      "role": "cwdcw",
-      "id": 9
-    },
-    {
-      "username": "popop",
-      "password": "opopop",
-      "fullName": "popo",
-      "role": "opopo",
-      "id": 10
-    },
-    {
-      "username": "ZUNUN",
-      "password": "ZUNUN",
-      "fullName": "ZUNUN",
-      "role": "ZUNUN",
-      "id": 11
-    },
-    {
-      "username": "hann",
-      "password": "123",
-      "fullName": "hahahn",
-      "role": "123",
-      "id": 12
     }
   ]
+
 }

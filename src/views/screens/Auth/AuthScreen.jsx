@@ -1,111 +1,218 @@
-import React from 'react'
-import TextField from '../../components/TextField/TextField'
-import './AuthScreen.css'
-import '../../components/Button/Button.css'
-import { connect } from 'react-redux';
-import { registerHandler, loginHandler, userKeepLogin, logoutHandler } from "../../../redux/actions";
-import cookie from 'universal-cookie'
+import React from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import Cookies from "universal-cookie";
 
-const cookieObject = new cookie()
-class AuthScreen extends React.Component{
-    state = {
-        isReg: true,
-        fullName: "",
-        username: "",
-        password: "",
-        role: "",
-    }
-    inputHandler = (e,field) => {
-        this.setState({[field]: e.target.value})
-    }
-    loginPage = () => {
-        this.setState({ isReg: false })
-    }
-    regPage = () => {
-        this.setState({ isReg: true })
-    }
-    registerHandler = () => {
-        const { username, password, fullName, role } = this.state
-        const dataregis = { username, password, fullName, role }
-        this.props.registerHandler(dataregis)
-    }
-    loginHandler = () => {
-        const {username,password} = this.state
-        const datalogin = {
-            username,
-            password
-        }
-        this.props.loginHandler(datalogin)
-    }
-    checkBoxHandler = (e,form) => {
+import TextField from "../../components/TextField/TextField";
+import ButtonUI from "../../components/Button/Button";
+import "./AuthScreen.css";
 
-    }
+// actions
+import { registerHandler, loginHandler } from "../../../redux/actions";
 
-    render() {
-        return (
-            <>
-            <div className="container">
-                <div className="row mt-5">
-                    <div className="col-5">
-                        <button onClick={this.regPage} className="btnhead mr-3">Register</button>
-                        <button onClick={this.loginPage} className="btnhead">Login</button>
-                    </div>
-                </div>
+class AuthScreen extends React.Component {
+  state = {
+    activePage: "register",
+    loginForm: {
+      username: "",
+      password: "",
+      showPassword: false,
+    },
+    registerForm: {
+      username: "",
+      fullName: "",
+      email: "",
+      password: "",
+      showPassword: false,
+    },
+  };
+
+  componentDidUpdate() {
+    if (this.props.user.id) {
+      const cookie = new Cookies();
+      cookie.set("authData", JSON.stringify(this.props.user));
+    }
+  }
+
+  inputHandler = (e, field, form) => {
+    const { value } = e.target;
+    this.setState({
+      [form]: {
+        ...this.state[form],
+        [field]: value,
+      },
+    });
+
+    // this.setState({ loginForm: {
+    //   ...this.state.loginForm,
+    //   [fieldYangDiganti]: value
+    // }})
+  };
+
+  registerBtnHandler = () => {
+    const { username, fullName, password, email } = this.state.registerForm;
+    let newUser = {
+      username,
+      fullName,
+      password,
+      email,
+    };
+
+    this.props.onRegister(newUser);
+  };
+
+  loginBtnHandler = () => {
+    const { username, password } = this.state.loginForm;
+    let newUser = {
+      username,
+      password,
+    };
+
+    this.props.onLogin(newUser);
+  };
+
+  checkboxHandler = (e, form) => {
+    const { checked } = e.target;
+
+    this.setState({
+      [form]: {
+        ...this.state[form],
+        showPassword: checked
+      }
+    });
+  }
+
+  renderAuthComponent = () => {
+    const { activePage } = this.state;
+    if (activePage == "register") {
+      return (
+        <div className="mt-5">
+          <h3>Register</h3>
+          <p className="mt-4">
+            You will get the best recommendation for rent house in near of you
+          </p>
+          <TextField
+            value={this.state.registerForm.username}
+            onChange={(e) => this.inputHandler(e, "username", "registerForm")}
+            placeholder="Username"
+            className="mt-5"
+          />
+          <TextField
+            value={this.state.registerForm.fullName}
+            onChange={(e) => this.inputHandler(e, "fullName", "registerForm")}
+            placeholder="Name"
+            className="mt-2"
+          />
+          <TextField
+            value={this.state.registerForm.email}
+            onChange={(e) => this.inputHandler(e, "email", "registerForm")}
+            placeholder="Email"
+            className="mt-2"
+          />
+          <TextField
+            value={this.state.registerForm.password}
+            onChange={(e) => this.inputHandler(e, "password", "registerForm")}
+            placeholder="Password"
+            type="password"
+            className="mt-2"
+          />
+          <input type="checkbox" name="RegShowPass" onChange={(e) => this.checkboxHandler(e, 'registerForm')} className="mt-3 mr-2"/>Show Password
+          <div className="d-flex justify-content-center">
+            <ButtonUI
+              type="contained"
+              onClick={this.registerBtnHandler}
+              className="mt-4"
+            >
+              Register
+            </ButtonUI>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="mt-5">
+          <h3>Log In</h3>
+          <p className="mt-4">
+            Welcome back.
+            <br /> Please, login to your account
+          </p>
+          <TextField
+            value={this.state.loginForm.username}
+            onChange={(e) => this.inputHandler(e, "username", "loginForm")}
+            placeholder="Username"
+            className="mt-5"
+          />
+          <TextField
+            value={this.state.loginForm.password}
+            onChange={(e) => this.inputHandler(e, "password", "loginForm")}
+            placeholder="Password"
+            className="mt-2"
+          />
+          <div className="d-flex justify-content-center">
+            <ButtonUI
+              onClick={this.loginBtnHandler}
+              type="contained"
+              className="mt-4"
+            >
+              Login
+            </ButtonUI>
+          </div>
+        </div>
+      );
+    }
+  };
+
+  render() {
+    if (this.props.user.id > 0) {
+      return <Redirect to="/" />;
+    }
+    return (
+      <div className="container">
+        <div className="row mt-5">
+          <div className="col-5">
+            <div className="d-flex flex-row">
+              <ButtonUI
+                className={`auth-screen-btn ${
+                  this.state.activePage == "register" ? "active" : null
+                }`}
+                type="outlined"
+                onClick={() => this.setState({ activePage: "register" })}
+              >
+                Register
+              </ButtonUI>
+              <ButtonUI
+                className={`ml-3 auth-screen-btn ${
+                  this.state.activePage == "login" ? "active" : null
+                }`}
+                type="outlined"
+                onClick={() => this.setState({ activePage: "login" })}
+              >
+                Login
+              </ButtonUI>
             </div>
-            {
-                this.state.isReg?
-                <div className="container">
-                    <div className="row mt-5">
-                        <div className="col-5">
-                            <h3>Register</h3>
-                            <p className="mt-4">
-                                You will get the best recommendation for rent<br/>house in near of you
-                            </p>
-                            <TextField onChange={(e) => this.inputHandler(e,"fullName")} placeholder="Name" className="mt-5"/>    
-                            <TextField onChange={(e) => this.inputHandler(e,"username")} placeholder="Username" className="mt-2"/>
-                            <TextField onChange={(e) => this.inputHandler(e,"password")} placeholder="Password" className="mt-2"/>
-                            <TextField onChange={(e) => this.inputHandler(e,"role")} placeholder="Role" className="mt-2"/>
-                            <input type="checkbox" onChange={this.checkBoxHandler(e,)} className="mt-3 mr-2" name="ShowPassReg"/>Show Password
-                            <div className="d-flex justify-content-center">
-                                <button onClick={this.registerHandler} className="custon-btn custom-btn-contained p-2 mt-5 align-self-center">Register</button>                        
-                            </div>
-                        </div>
-                        <div className="col-7 d-flex justify-content-center">
-                            <h3>Image</h3>
-                        </div>
-                    </div>
-                </div> 
-                :
-                <div className="container">
-                    <div className="row mt-5">
-                        <div className="col-5">
-                            <h3>Log In</h3>
-                            <p className="mt-4">
-                                Welcome back,<br/>Please login to your account
-                            </p>
-                            <TextField onChange={(e) => this.inputHandler(e,"username")} placeholder="Username" className="mt-5"/>
-                            <TextField onChange={(e) => this.inputHandler(e,"password")} placeholder="Password" className="mt-2"/>
-                            <input type="checkbox" className="mt-3 mr-2" name="ShowPassLog"/>Show Password
-                            <div className="d-flex justify-content-center">
-                                <button onClick={this.loginHandler} className="custon-btn custom-btn-contained p-2 mt-5 align-self-center">Login</button>                        
-                            </div>
-                        </div>
-                        <div className="col-7 d-flex justify-content-center">
-                            <h3>Image</h3>
-                        </div>
-                    </div>
-                </div>
-            }
-            </>
-
-        )
-    }
+            {this.props.user.errMsg ? (
+              <div className="alert alert-danger mt-3">
+                {this.props.user.errMsg}
+              </div>
+            ) : null}
+            {this.renderAuthComponent()}
+          </div>
+          <div className="col-7">Picture</div>
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    }
-}
+  return {
+    user: state.user,
+  };
+};
 
-export default connect(mapStateToProps,{registerHandler,loginHandler})(AuthScreen)
+const mapDispatchToProps = {
+  onRegister: registerHandler,
+  onLogin: loginHandler,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthScreen);

@@ -10,6 +10,8 @@ interface ProductCardData {
   productName: string;
   price: number;
   review: number;
+  location: string;
+  image: any;
 }
 
 type ProductCardProps = {
@@ -22,14 +24,14 @@ class ProductCard extends React.Component<ProductCardProps> {
     return (
       <div className={`product-card d-inline-block ${this.props.className}`}>
         <img
-          src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9.jpg"
+          src={this.props.data?.image}
           alt=""
           style={{ width: "224px" }}
         />
         <div>
-          <p className="mt-3">White T-Shirt</p>
-          <h5 style={{ fontWeight: "bolder" }}>Rp. 125.000</h5>
-          <p className="small">Jakarta Selatan</p>
+          <p className="mt-3">{this.props.data?.productName}</p>
+          <h5 style={{ fontWeight: "bolder" }}>{this.props.data?.price}</h5>
+          <p className="small">{this.props.data?.location}</p>
         </div>
         <div className="d-flex flex-row align-items-center justify-content-between mt-2">
           <div>
