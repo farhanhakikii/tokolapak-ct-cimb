@@ -37,6 +37,9 @@ class AuthScreen extends React.Component{
         }
         this.props.loginHandler(datalogin)
     }
+    checkBoxHandler = (e,form) => {
+
+    }
 
     render() {
         return (
@@ -62,6 +65,7 @@ class AuthScreen extends React.Component{
                             <TextField onChange={(e) => this.inputHandler(e,"username")} placeholder="Username" className="mt-2"/>
                             <TextField onChange={(e) => this.inputHandler(e,"password")} placeholder="Password" className="mt-2"/>
                             <TextField onChange={(e) => this.inputHandler(e,"role")} placeholder="Role" className="mt-2"/>
+                            <input type="checkbox" onChange={this.checkBoxHandler(e,)} className="mt-3 mr-2" name="ShowPassReg"/>Show Password
                             <div className="d-flex justify-content-center">
                                 <button onClick={this.registerHandler} className="custon-btn custom-btn-contained p-2 mt-5 align-self-center">Register</button>                        
                             </div>
@@ -81,6 +85,7 @@ class AuthScreen extends React.Component{
                             </p>
                             <TextField onChange={(e) => this.inputHandler(e,"username")} placeholder="Username" className="mt-5"/>
                             <TextField onChange={(e) => this.inputHandler(e,"password")} placeholder="Password" className="mt-2"/>
+                            <input type="checkbox" className="mt-3 mr-2" name="ShowPassLog"/>Show Password
                             <div className="d-flex justify-content-center">
                                 <button onClick={this.loginHandler} className="custon-btn custom-btn-contained p-2 mt-5 align-self-center">Login</button>                        
                             </div>
