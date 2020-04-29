@@ -20,7 +20,7 @@ class Cart extends React.Component{
             }
         })
         .then(res => {
-            this.setState({cart: res.data[0], isCart: true})
+            this.setState({cart: res.data, isCart: true})
             console.log(res.data);
         })
         .catch(err => {
@@ -45,13 +45,17 @@ class Cart extends React.Component{
             <tbody>
                     {
                         this.state.isCart?
-                        <tr>
-                            <td><img src={`${this.state.cart.product.image}`} alt="" height="100px" width="100px"/></td>
-                            <td>{this.state.cart.product.productName}</td>
-                            <td>{this.state.cart.product.price}</td>
-                            <td>{this.state.cart.quantity} </td>
-                            <td><button className="btn btn-danger">Delete</button></td>
-                        </tr> : null
+                        this.state.cart.map((val) => {
+                            return (
+                                <tr>
+                                    <td><img src={`${val.product.image}`} alt="" height="100px" width="100px"/></td>
+                                    <td>{val.product.productName}</td>
+                                    <td>{val.product.price}</td>
+                                    <td>{val.quantity} </td>
+                                    <td><button className="btn btn-danger">Delete</button></td>
+                                </tr>
+                            )
+                        }) : null
                     }
             </tbody>
         </table>
