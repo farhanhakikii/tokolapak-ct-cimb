@@ -12,7 +12,7 @@ class Cart extends React.Component{
         isCart: false
     }
     
-    componentWillMount(){
+    componentDidMount(){
         Axios.get(`${API_URL}/cart`, {
             params: {
                 userId: this.props.user.id,
@@ -27,7 +27,15 @@ class Cart extends React.Component{
             console.log(err);
         })
     }
-
+    deleteCart = (id) => {
+        Axios.delete(`${API_URL}/cart/${id}`)
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
     render() {
         return (
         <>
@@ -52,7 +60,7 @@ class Cart extends React.Component{
                                     <td>{val.product.productName}</td>
                                     <td>{val.product.price}</td>
                                     <td>{val.quantity} </td>
-                                    <td><button className="btn btn-danger">Delete</button></td>
+                                    <td><button onClick={this.deleteCart(val.id)} className="btn btn-danger">Delete</button></td>
                                 </tr>
                             )
                         }) : null
