@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons/";
 
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 import "./Navbar.css";
-import { Link } from "react-router-dom";
 import ButtonUI from "../Button/Button.tsx";
 import { connect } from "react-redux";
 
@@ -47,40 +48,41 @@ class Navbar extends React.Component {
           />
         </div>
         <div className="d-flex flex-row align-items-center">
-          {/* <FontAwesomeIcon icon={faUser} style={{ fontSize: 24 }} />
-          <p className="small ml-3 mr-4">Profile</p>
-          <FontAwesomeIcon
-            className="mr-2"
-            icon={faShoppingCart}
-            style={{ fontSize: 24 }}
-          />
-          <CircleBg>
-            <small style={{ color: "#3C64B1", fontWeight: "bold" }}>4</small>
-          </CircleBg> */}
-          {this.props.user.id}
-          {
-            this.props.user.id ? 
+          {this.props.user.id ? (
             <>
-            <FontAwesomeIcon icon={faUser} style={{fontSize: 24}}/>
-            <p className="ml-3 mr-4">{this.props.user.username}</p>
-            <FontAwesomeIcon className="mr-2" icon={faShoppingCart} style={{fontSize: 24}}/>
-            <CircleBg>
-              <small style={{ color: "#3C64B1", fontWeight: "bold"}}>
-                4
-              </small>
-            </CircleBg>
+              <FontAwesomeIcon icon={faUser} style={{ fontSize: 24 }} />
+              <p className="small ml-3 mr-4">{this.props.user.username}</p>
+              <FontAwesomeIcon
+                className="mr-2"
+                icon={faShoppingCart}
+                style={{ fontSize: 24 }}
+              />
+              <CircleBg>
+                <small style={{ color: "#3C64B1", fontWeight: "bold" }}>
+                  4
+                </small>
+              </CircleBg>
             </>
-            :
-            // <button className="btn btn-danger ml-3">Logout</button> :  
+          ) : (
             <>
-            <ButtonUI className="mr-3" type="textual">
-              <Link to="/auth" style={{textDecoration: "none",color: "inherit"}}>Sign in</Link>
-            </ButtonUI>
-            <ButtonUI type="contained">
-              <Link to="/auth" style={{textDecoration: "none",color: "inherit"}}>Sign up</Link>
+              <ButtonUI className="mr-3" type="textual">
+                <Link
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  to="/auth"
+                >
+                  Sign in
+                </Link>
+              </ButtonUI>
+              <ButtonUI type="contained">
+                <Link
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  to="/auth"
+                >
+                  Sign up
+                </Link>
               </ButtonUI>
             </>
-          }
+          )}
         </div>
       </div>
     );
@@ -89,8 +91,8 @@ class Navbar extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-      user: state.user
-  }
-}
+    user: state.user,
+  };
+};
 
 export default connect(mapStateToProps)(Navbar);

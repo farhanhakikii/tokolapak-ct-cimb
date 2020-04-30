@@ -45,18 +45,24 @@
       "id": 3
     }
   ],
-  "cart": [
+  "carts": [
+    {
+      "userId": 1,
+      "productId": 1,
+      "quantity": 1,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "productId": 1,
+      "quantity": 1,
+      "id": 4
+    },
     {
       "userId": 2,
       "productId": 3,
       "quantity": 1,
-      "id": 1
-    },
-    {
-      "userId": 2,
-      "productId": 1,
-      "quantity": 1,
-      "id": 3
+      "id": 6
     }
   ]
 }

@@ -3,6 +3,7 @@ import "./Cart.css"
 import { connect } from "react-redux";
 import Axios from "axios"
 import { API_URL } from "../../../constants/API";
+import { Link } from 'react-router-dom'
 
 class Cart extends React.Component{
     state = {
@@ -13,7 +14,10 @@ class Cart extends React.Component{
     }
     
     componentDidMount(){
-        Axios.get(`${API_URL}/cart`, {
+        this.coba()
+    }
+    coba = () => {
+        Axios.get(`${API_URL}/carts`, {
             params: {
                 userId: this.props.user.id,
                 _expand: "product"
@@ -27,9 +31,23 @@ class Cart extends React.Component{
             console.log(err);
         })
     }
-    deleteCart = (val) => {
-        Axios.delete(`${API_URL}/cart/${val}`)
+    renderCart = () => {
+        return this.state.cart.map((val) => {
+            return (
+                <tr>
+                    <td><img src={`${val.product.image}`} alt="" height="100px" width="100px"/></td>
+                    <td>{val.product.productName}</td>
+                    <td>{val.product.price}</td>
+                    <td>{val.quantity} </td>
+                    <td><button onClick={() => this.deleteCart(val.id)} className="btn btn-danger">Delete</button></td>
+                </tr>
+            )
+        })
+    }
+    deleteCart = (id) => {
+        Axios.delete(`${API_URL}/carts/${id}`)
         .then(res => {
+            this.coba()
             console.log(res);
         })
         .catch(err => {
@@ -52,18 +70,8 @@ class Cart extends React.Component{
             </thead>
             <tbody>
                     {
-                        this.state.isCart?
-                        this.state.cart.map((val) => {
-                            return (
-                                <tr>
-                                    <td><img src={`${val.product.image}`} alt="" height="100px" width="100px"/></td>
-                                    <td>{val.product.productName}</td>
-                                    <td>{val.product.price}</td>
-                                    <td>{val.quantity} </td>
-                                    <td><button onClick={() => this.deleteCart(val.id)} className="btn btn-danger">Delete</button></td>
-                                </tr>
-                            )
-                        }) : null
+                        this.state.isCart.length > 0?
+                        this.renderCart() : <p>Kosong. <Link to="/"> Ayo Belanja.</Link></p>
                     }
             </tbody>
         </table>
