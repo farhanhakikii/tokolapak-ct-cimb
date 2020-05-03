@@ -1,4 +1,4 @@
-###IDE TUGAS AKHIR
+IDE TUGAS AKHIR
 
 Platform penyedia layanan streaming terpadu.
 
