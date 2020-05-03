@@ -2,4 +2,4 @@
 
 Platform penyedia layanan streaming terpadu.
 
-Layanan streaming bisa berupa pertandingan berbagai jenis olahraga, film, series.
+Layanan streaming bisa berupa pertandingan berbagai jenis olahraga(Live / Siaran Ulang), film, series.
