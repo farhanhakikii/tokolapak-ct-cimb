@@ -18,6 +18,7 @@ import ButtonUI from "../../components/Button/Button";
 import CarouselShowcaseItem from "./CarouselShowcaseItem.tsx";
 import Colors from "../../../constants/Colors";
 import { API_URL } from "../../../constants/API";
+import { connect } from "react-redux";
 
 const dummy = [
   {
@@ -122,11 +123,13 @@ class Home extends React.Component {
 
   renderProducts = () => {
     return this.state.bestSellerData.map((val) => {
-      return (
-        <Link to={`/product/${val.id}`} style={{color: "inherit"}}>
+      if(val.productName.toLowerCase().startsWith(this.props.user.searchBar.toLowerCase())){  
+        return (
+          <Link to={`/product/${val.id}`} style={{color: "inherit"}}>
         <ProductCard key={`bestseller-${val.id}`} data={val} className="m-2" />
         </Link>
       );
+      }
     });
   };
 
@@ -230,4 +233,10 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(Home);

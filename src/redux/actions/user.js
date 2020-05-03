@@ -108,3 +108,10 @@ export const cookieChecker = () => {
     type: "COOKIE_CHECK",
   };
 };
+
+export const search = (namaitem) => {
+  return {
+    type: "SEARCH_ITEM",
+    payload: namaitem,
+  }
+}
