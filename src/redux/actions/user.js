@@ -64,7 +64,7 @@ export const userKeepLogin = (userData) => {
 };
 
 export const logoutHandler = () => {
-  cookieObj.remove("authData");
+  cookieObj.remove("authData", { path: "/" });
   return {
     type: ON_LOGOUT_SUCCESS,
   };
@@ -84,7 +84,7 @@ export const registerHandler = (userData) => {
             payload: "Username sudah digunakan",
           });
         } else {
-          Axios.post(`${API_URL}/users`, {...userData, role: "user"})
+          Axios.post(`${API_URL}/users`, { ...userData, role: "user" })
             .then((res) => {
               console.log(res.data);
               dispatch({

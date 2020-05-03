@@ -110,8 +110,8 @@ class Home extends React.Component {
     this.setState({ activeIndex: prevIndex });
   };
 
-  getBestSellerData = () => {
-    Axios.get(`${API_URL}/products`)
+  getBestSellerData = (value = "") => {
+    Axios.get(`${API_URL}/products${value}`)
       .then((res) => {
         this.setState({ bestSellerData: res.data });
       })
@@ -123,7 +123,9 @@ class Home extends React.Component {
   renderProducts = () => {
     return this.state.bestSellerData.map((val) => {
       return (
+        <Link to={`/product/${val.id}`} style={{color: "inherit"}}>
         <ProductCard key={`bestseller-${val.id}`} data={val} className="m-2" />
+        </Link>
       );
     });
   };
@@ -137,16 +139,16 @@ class Home extends React.Component {
       <div>
         <div className="d-flex justify-content-center flex-row align-items-center my-3">
           <Link to="/" style={{ color: "inherit" }}>
-            <h6 className="mx-4 font-weight-bold">PHONE</h6>
+            <h6 className="mx-4 font-weight-bold" onClick={(_) => this.getBestSellerData(`?category=Phone`)}>PHONE</h6>
           </Link>
           <Link to="/" style={{ color: "inherit" }}>
-            <h6 className="mx-4 font-weight-bold">LAPTOP</h6>
+            <h6 className="mx-4 font-weight-bold" onClick={(_) => this.getBestSellerData(`?category=Laptop`)}>LAPTOP</h6>
           </Link>
           <Link to="/" style={{ color: "inherit" }}>
-            <h6 className="mx-4 font-weight-bold">TAB</h6>
+            <h6 className="mx-4 font-weight-bold" onClick={(_) => this.getBestSellerData(`?category=Tab`)}>TAB</h6>
           </Link>
           <Link to="/" style={{ color: "inherit" }}>
-            <h6 className="mx-4 font-weight-bold">DESKTOP</h6>
+            <h6 className="mx-4 font-weight-bold" onClick={(_) => this.getBestSellerData(`?category=Desktop`)}>DESKTOP</h6>
           </Link>
         </div>
         <Carousel
